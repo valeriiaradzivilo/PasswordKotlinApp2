@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.lab2android.R
 
@@ -40,12 +41,17 @@ class FirstFragment : Fragment() {
         button = view.findViewById(R.id.button_ok)
 
 
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
-            updateInputType(checkedId == R.id.radio_button_visible)
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val isEmpty = checkTextFieldNotEmpty()
+            if (!isEmpty)
+                updateInputType(checkedId == R.id.radio_button_visible)
+
         }
 
         button.setOnClickListener {
-            onOkClick(editText.text.toString())
+            val isEmpty = checkTextFieldNotEmpty()
+            if (!isEmpty)
+                onOkClick(editText.text.toString())
         }
     }
 
@@ -55,6 +61,16 @@ class FirstFragment : Fragment() {
         } else {
             InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
+    }
+
+    private fun checkTextFieldNotEmpty(): Boolean {
+        val isEmpty = editText.text.isEmpty()
+        if (isEmpty) {
+            Toast.makeText(requireActivity(), "Please, fill in the form )", Toast.LENGTH_SHORT)
+                .show()
+
+        }
+        return isEmpty
     }
 
 

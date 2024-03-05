@@ -11,27 +11,6 @@ import com.example.lab2android.R
 
 class SecondFragment : Fragment() {
 
-    //    private var onCancelButtonClickListener: OnCancelButtonClickListener? = null
-//
-//    interface OnCancelButtonClickListener {
-//        fun onCancelButtonClick()
-//    }
-//
-//    fun setOnCancelButtonClickListener(listener: OnCancelButtonClickListener) {
-//        onCancelButtonClickListener = listener
-//    }
-//
-//    // Implement methods for displaying the result and handling the Cancel button click
-//
-//    // ...
-//
-//    private fun handleCancelButtonClick() {
-//        // Clear or hide (or remove) the fragment
-//        // ...
-//
-//        onCancelButtonClickListener?.onCancelButtonClick()
-//    }
-//
     companion object {
         fun newInstance(data: String): SecondFragment {
             val fragment = SecondFragment()
@@ -52,17 +31,16 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Access UI elements and perform actions if needed
+      
         val resultTextView: TextView = view.findViewById(R.id.text_field)
         val cancelButton: Button = view.findViewById(R.id.button_cancel)
 
-        // Retrieve data from arguments
+
         val result = arguments?.getString("result", "")
         resultTextView.text = result
 
         cancelButton.setOnClickListener {
-            // Implement the cancel button action
-            // For example, pop the fragment from the back stack
+
             requireActivity().supportFragmentManager.popBackStack()
         }
     }
