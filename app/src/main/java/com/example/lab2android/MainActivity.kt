@@ -1,43 +1,40 @@
 package com.example.lab2android
 
 import android.os.Bundle
-import android.text.InputType
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lab2android.fragments.FirstFragment
+import com.example.lab2android.fragments.SecondFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var editText: EditText
-    private lateinit var radioGroup: RadioGroup
-    private lateinit var button: Button
+
+    private lateinit var firstFragment: FirstFragment
+    private lateinit var secondFragment: SecondFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        editText = findViewById(R.id.text_field)
-        radioGroup = findViewById(R.id.radio_group)
-        button = findViewById(R.id.button_ok)
+        firstFragment = FirstFragment()
 
-        // Get radio group selected item using on checked change listener
-        radioGroup.setOnCheckedChangeListener(
-            RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                val isPasswordVisible = checkedId == R.id.radio_button_visible
+        firstFragment.setOnClickListener { result ->
+            onOkButtonClick(result)
+        }
 
-                if (isPasswordVisible) {
-                    editText.inputType =
-                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-                } else {
-                    editText.inputType =
-                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-                }
-
-            })
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.root_container, firstFragment)
+            .commit()
 
 
     }
-}
 
+
+    private fun onOkButtonClick(result: String) {
+        secondFragment = SecondFragment.newInstance(result)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.root_container, secondFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+}
 
