@@ -16,7 +16,7 @@ import com.example.lab2android.R
 class FirstFragment : Fragment() {
 
 
-    private lateinit var editText: EditText
+    private var editText: EditText? = null
     private lateinit var radioGroup: RadioGroup
     private lateinit var button: Button
 
@@ -30,7 +30,17 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        if (editText != null)
+            editText!!.text?.clear() // Add this line to clear the text
+
         return inflater.inflate(R.layout.first_fragment, container, false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (editText != null)
+            editText!!.text?.clear() // Add this line to clear the text
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,35 +52,47 @@ class FirstFragment : Fragment() {
 
 
         radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            val isEmpty = checkTextFieldNotEmpty()
-            if (!isEmpty)
+            val isEmpty = isTextFieldEmpty()
+            if (isEmpty) {
+                group.check(R.id.radio_button_visible)
+                updateInputType(true)
+            } else
                 updateInputType(checkedId == R.id.radio_button_visible)
-
         }
 
         button.setOnClickListener {
-            val isEmpty = checkTextFieldNotEmpty()
-            if (!isEmpty)
-                onOkClick(editText.text.toString())
+            val isEmpty = isTextFieldEmpty()
+            if (!isEmpty && editText != null)
+                onOkClick(editText!!.text.toString())
         }
     }
 
     private fun updateInputType(isPasswordVisible: Boolean) {
-        editText.inputType = if (isPasswordVisible) {
-            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-        } else {
-            InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        if (editText != null) {
+            editText!!.inputType = if (isPasswordVisible) {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            } else {
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+
+            editText!!.setSelection(editText!!.text.length)
         }
     }
 
-    private fun checkTextFieldNotEmpty(): Boolean {
-        val isEmpty = editText.text.isEmpty()
+    private fun isTextFieldEmpty(): Boolean {
+        if (editText == null) return true
+        val isEmpty = editText!!.text.isEmpty()
         if (isEmpty) {
             Toast.makeText(requireActivity(), "Please, fill in the form )", Toast.LENGTH_SHORT)
                 .show()
 
         }
         return isEmpty
+    }
+
+    fun clean() {
+        if (editText != null)
+            editText!!.text?.clear()
     }
 
 

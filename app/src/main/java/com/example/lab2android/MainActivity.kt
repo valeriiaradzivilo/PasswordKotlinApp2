@@ -35,6 +35,14 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.root_container, secondFragment)
             .addToBackStack(null)
             .commit()
+
+        secondFragment.setOnClickListener { clean ->
+            if (clean)
+                firstFragment.clean()
+           
+        }
     }
+
+
 }
 

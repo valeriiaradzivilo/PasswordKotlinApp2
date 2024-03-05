@@ -21,6 +21,12 @@ class SecondFragment : Fragment() {
         }
     }
 
+    private lateinit var onCancelClick: (clean: Boolean) -> Unit?
+    fun setOnClickListener(listener: (Boolean) -> Unit) {
+        onCancelClick = listener
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,17 +37,18 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-      
+
         val resultTextView: TextView = view.findViewById(R.id.text_field)
         val cancelButton: Button = view.findViewById(R.id.button_cancel)
 
 
-        val result = arguments?.getString("result", "")
+        val result = arguments?.getString("data", "")
         resultTextView.text = result
 
         cancelButton.setOnClickListener {
-
+            onCancelClick(true)
             requireActivity().supportFragmentManager.popBackStack()
+
         }
     }
 }
