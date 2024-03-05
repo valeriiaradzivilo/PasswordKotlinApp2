@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Lab2Android</string>
+    <string name="enter_your_text_here">Enter your text here</string>
+    <string name="enter_your_password_here">Enter your password here</string>
+    <string name="show_password">Show Password</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="ok">Ok</string>
+</resources>
