@@ -7,20 +7,21 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lab2android.R
-import com.example.lab2android.fragments.FirstFragment
 import com.example.lab2android.storage.DB
 import com.example.lab2android.storage.PasswordDbHelper
 
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var resultTextSQLite: TextView
+    private lateinit var resultShowPasswordSQLite: TextView
     private lateinit var goBackButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        resultTextSQLite = findViewById(R.id.result_sqlite)
+        resultTextSQLite = findViewById(R.id.password_result)
+        resultShowPasswordSQLite = findViewById(R.id.show_password_result)
         goBackButton = findViewById(R.id.button_go_back)
 
         resultTextSQLite.text = ""
@@ -44,18 +45,35 @@ class SecondActivity : AppCompatActivity() {
             null,
             null,
             sortOrder,
-            "1"
         )
 
         cursor.moveToFirst()
 
         val index = cursor.getColumnIndex(DB.DBEntry.PASSWORD)
+        val indexShow = cursor.getColumnIndex(DB.DBEntry.SHOW_PASSWORD)
         if (index > -1) {
-            val text = cursor.getString(index)
-            resultTextSQLite.text = text
+            with(cursor)
+            {
+                while (moveToNext()) {
+                    val text = cursor.getString(index)
+                    val showPassword = cursor.getString(indexShow)
+                    if (resultTextSQLite.text.isNotEmpty()) {
+                        resultTextSQLite.text = resultTextSQLite.text.toString() + "\n" + text
+                        resultShowPasswordSQLite.text =
+                            resultShowPasswordSQLite.text.toString() + "\n" + showPassword
+
+                    } else {
+                        resultTextSQLite.text = text
+                        resultShowPasswordSQLite.text = showPassword
+                    }
+
+
+                }
+            }
+
         }
 
-        if (resultTextSQLite.text.isEmpty()) {
+        if (resultTextSQLite.text.trim().isEmpty()) {
             resultTextSQLite.text = getString(R.string.no_data)
         }
 
@@ -64,12 +82,7 @@ class SecondActivity : AppCompatActivity() {
 
     private fun setGoBackClickListener() {
         goBackButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.root_container,
-                    FirstFragment()
-                )
-                .commit()
+            this.finish()
         }
     }
 }

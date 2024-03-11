@@ -36,6 +36,7 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        passwordField = null
         return inflater.inflate(R.layout.first_fragment, container, false)
     }
 
@@ -45,6 +46,8 @@ class FirstFragment : Fragment() {
         var storePassword: Boolean = false
 
         initComponents(view)
+
+        clean()
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val isEmpty = isTextFieldEmpty()
@@ -62,6 +65,7 @@ class FirstFragment : Fragment() {
                 if (passwordField != null && storePassword) {
                     storePasswordInDatabase(passwordField!!.text.toString())
                 }
+                clean()
             }
         }
 

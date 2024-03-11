@@ -11,4 +11,6 @@
     <string name="open_my_db">Open my DB</string>
     <string name="no_data_db">No data</string>
     <string name="go_back">Go back</string>
+    <string name="password">Password:</string>
+    <string name="delete_db_data">Delete DB data</string>
 </resources>

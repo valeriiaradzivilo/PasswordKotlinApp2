@@ -15,4 +15,7 @@
     <string name="fill_form_message">Please, fill in the form</string>
     <string name="store_password_success">The password was stored successfully</string>
     <string name="store_password_failure">The password was NOT stored successfully</string>
+    <string name="password">Password:</string>
+    <string name="show_password_label">Show password:</string>
+    <string name="delete_db_data">Delete DB data</string>
 </resources>
