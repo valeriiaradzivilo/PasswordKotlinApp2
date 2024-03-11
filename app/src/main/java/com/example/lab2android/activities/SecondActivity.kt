@@ -1,6 +1,5 @@
 package com.example.lab2android.activities
 
-import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.provider.BaseColumns
@@ -65,8 +64,12 @@ class SecondActivity : AppCompatActivity() {
 
     private fun setGoBackClickListener() {
         goBackButton.setOnClickListener {
-            val intent = Intent(this, FirstFragment::class.java)
-            startActivity(intent)
+            supportFragmentManager.beginTransaction()
+                .replace(
+                    R.id.root_container,
+                    FirstFragment()
+                )
+                .commit()
         }
     }
 }

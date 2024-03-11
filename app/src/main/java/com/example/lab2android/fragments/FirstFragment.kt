@@ -76,7 +76,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun initComponents(view: View) {
-        passwordField = view.findViewById(R.id.text_field)
+        passwordField = view.findViewById(R.id.password_text_field)
         radioGroup = view.findViewById(R.id.radio_group)
         okButton = view.findViewById(R.id.button_ok)
         openDbButton = view.findViewById(R.id.open_button)
