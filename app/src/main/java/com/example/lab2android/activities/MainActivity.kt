@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lab2android.R
 import com.example.lab2android.fragments.FirstFragment
 import com.example.lab2android.fragments.SecondFragment
+import com.example.lab2android.storage.PasswordDbHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +16,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val dbHelper = PasswordDbHelper(this)
+
+        dbHelper.onCreate(dbHelper.writableDatabase)
 
 
 

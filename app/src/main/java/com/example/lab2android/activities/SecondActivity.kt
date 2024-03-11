@@ -9,12 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.lab2android.R
 import com.example.lab2android.storage.DB
 import com.example.lab2android.storage.PasswordDbHelper
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var resultTextSQLite: TextView
     private lateinit var resultShowPasswordSQLite: TextView
     private lateinit var goBackButton: Button
+    private lateinit var deleteDataFAB: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,7 @@ class SecondActivity : AppCompatActivity() {
         resultTextSQLite = findViewById(R.id.password_result)
         resultShowPasswordSQLite = findViewById(R.id.show_password_result)
         goBackButton = findViewById(R.id.button_go_back)
+        deleteDataFAB = findViewById(R.id.delete_db_data_fab)
 
         resultTextSQLite.text = ""
 
@@ -31,6 +34,10 @@ class SecondActivity : AppCompatActivity() {
 
         displayPasswordFromDatabase(db)
         setGoBackClickListener()
+
+        deleteDataFAB.setOnClickListener {
+            dbHelper.onDeleteData(db)
+        }
     }
 
     private fun displayPasswordFromDatabase(db: SQLiteDatabase) {

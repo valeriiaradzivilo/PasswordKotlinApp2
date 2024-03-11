@@ -34,6 +34,11 @@ class PasswordDbHelper(context: Context) :
         onUpgrade(db, oldVersion, newVersion)
     }
 
+    fun onDeleteData(db: SQLiteDatabase) {
+        db.execSQL(SQL_DELETE_ENTRIES)
+        db.execSQL(SQL_CREATE_ENTRIES)
+    }
+
     companion object {
         // If you change the database schema, you must increment the database version.
         const val DATABASE_VERSION = 1

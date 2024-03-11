@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,72 +8,87 @@
     android:orientation="vertical"
     android:padding="50dp">
 
-    <EditText
-        android:id="@+id/password_text_field"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_background"
-        android:hint="@string/enter_your_password_here"
-        android:importantForAutofill="no"
-        android:includeFontPadding="true"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:padding="10dp" />
+        android:layout_height="match_parent">
 
-    <RadioGroup
-        android:id="@+id/radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <RadioButton
-            android:id="@+id/radio_button_visible"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/show_password" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <RadioButton
-            android:id="@+id/radio_button_invisible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hide_password" />
 
-    </RadioGroup>
+            <EditText
+                android:id="@+id/password_text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/enter_your_password_here"
+                android:importantForAutofill="no"
+                android:includeFontPadding="true"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:padding="10dp" />
 
-    <CheckBox
-        android:id="@+id/storePasswordCheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:buttonTint="@color/purple_700"
-        android:padding="10dp"
-        android:text="@string/store_my_password"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
 
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:foregroundGravity="center_vertical"
-        android:gravity="center"
-        android:text="@string/ok"
-        android:textColor="@color/white"
-        app:cornerRadius="10dp" />
+                <RadioButton
+                    android:id="@+id/radio_button_visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/show_password" />
 
-    <Button
-        android:id="@+id/open_button"
-        android:layout_width="311dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
-        android:gravity="center"
-        android:shadowColor="@color/black"
-        android:text="@string/open_my_db"
-        app:icon="@android:drawable/ic_menu_info_details"
-        app:iconGravity="textStart"
-        app:rippleColor="@color/background" />
+                <RadioButton
+                    android:id="@+id/radio_button_invisible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hide_password" />
+
+            </RadioGroup>
+
+            <CheckBox
+                android:id="@+id/storePasswordCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/purple_700"
+                android:padding="10dp"
+                android:text="@string/store_my_password"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:foregroundGravity="center_vertical"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/open_button"
+                android:layout_width="311dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/teal_700"
+                android:gravity="center"
+                android:shadowColor="@color/black"
+                android:text="@string/open_my_db"
+                app:icon="@android:drawable/ic_menu_info_details"
+                app:iconGravity="textStart"
+                app:rippleColor="@color/background" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

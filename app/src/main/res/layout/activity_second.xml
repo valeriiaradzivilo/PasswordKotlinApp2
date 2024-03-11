@@ -6,87 +6,92 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-
-        <TextView
-            android:id="@+id/result_sqlite"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="10dp"
-            android:text="@string/result_from_sqlite"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TableRow
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <TextView
+                android:id="@+id/result_sqlite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:padding="10dp"
+                android:text="@string/result_from_sqlite"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-            >
+            <TableRow
 
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/password_result_label"
+                >
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/password" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/password_result"
+                    <TextView
+                        android:id="@+id/password_result_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/password" />
+
+                    <TextView
+                        android:id="@+id/password_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/show_password_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/show_password_label" />
 
-            <LinearLayout
+                    <TextView
+                        android:id="@+id/show_password_result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <Button
+                android:id="@+id/button_go_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/show_password_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/show_password_label" />
-
-                <TextView
-                    android:id="@+id/show_password_result"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-            </LinearLayout>
-
-        </TableRow>
-
-        <Button
-            android:id="@+id/button_go_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="@string/go_back"
-            android:textColor="@color/white"
-            app:cornerRadius="10dp" />
+                android:layout_gravity="bottom"
+                android:text="@string/go_back"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="match_parent"
+        android:id="@+id/delete_db_data_fab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clickable="true"
