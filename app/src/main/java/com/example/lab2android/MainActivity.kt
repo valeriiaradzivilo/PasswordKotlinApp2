@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         firstFragment = FirstFragment()
 
         firstFragment.setOnClickListener { result ->
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         secondFragment.setOnClickListener { clean ->
             if (clean)
                 firstFragment.clean()
-           
+
         }
     }
 

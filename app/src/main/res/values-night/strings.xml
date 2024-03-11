@@ -4,4 +4,5 @@
     <string name="enter_your_password_here">Enter your password here</string>
     <string name="hide_password">Hide Password</string>
     <string name="ok">Ok</string>
+    <string name="store_my_password">Store my password</string>
 </resources>
