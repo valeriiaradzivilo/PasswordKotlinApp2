@@ -37,10 +37,8 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val resultTextView: TextView = view.findViewById(R.id.text_field)
+        val resultTextView: TextView = view.findViewById(R.id.result_fragment)
         val cancelButton: Button = view.findViewById(R.id.button_cancel)
-
 
         val result = arguments?.getString("data", "")
         resultTextView.text = result
@@ -52,3 +50,4 @@ class SecondFragment : Fragment() {
         }
     }
 }
+

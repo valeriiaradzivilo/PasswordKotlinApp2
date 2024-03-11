@@ -6,4 +6,13 @@
     <string name="hide_password">Hide Password</string>
     <string name="ok">Ok</string>
     <string name="store_my_password">Store my password</string>
+    <string name="result_from_sqlite">Result from SQLite:</string>
+    <string name="result">Result:</string>
+    <string name="cancel">Cancel</string>
+    <string name="open_my_db">Open my DB</string>
+    <string name="no_data">No passwords were stored</string>
+    <string name="go_back">Go back</string>
+    <string name="fill_form_message">Please, fill in the form</string>
+    <string name="store_password_success">The password was stored successfully</string>
+    <string name="store_password_failure">The password was NOT stored successfully</string>
 </resources>

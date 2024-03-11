@@ -5,4 +5,10 @@
     <string name="hide_password">Hide Password</string>
     <string name="ok">Ok</string>
     <string name="store_my_password">Store my password</string>
+    <string name="result_from_sqlite">Result from SQLite:</string>
+    <string name="result">Result:</string>
+    <string name="cancel">Cancel</string>
+    <string name="open_my_db">Open my DB</string>
+    <string name="no_data_db">No data</string>
+    <string name="go_back">Go back</string>
 </resources>

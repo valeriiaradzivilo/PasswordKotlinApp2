@@ -1,7 +1,8 @@
-package com.example.lab2android
+package com.example.lab2android.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lab2android.R
 import com.example.lab2android.fragments.FirstFragment
 import com.example.lab2android.fragments.SecondFragment
 
