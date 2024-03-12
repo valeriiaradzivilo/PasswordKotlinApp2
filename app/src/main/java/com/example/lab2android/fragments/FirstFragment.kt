@@ -118,8 +118,14 @@ class FirstFragment : Fragment() {
             )
         }
 
-        val newRowId = db?.insert(DB.DBEntry.TABLE_NAME, null, values)
-        showMessage(newRowId != null)
+        try {
+            val newRowId = db?.insert(DB.DBEntry.TABLE_NAME, null, values)
+            showMessage(newRowId != null)
+
+        } catch (e: Exception) {
+            showMessage(false)
+            print(e.toString())
+        }
     }
 
     private fun showMessage(isSuccess: Boolean) {

@@ -20,7 +20,13 @@ class PasswordDbHelper(context: Context) :
 
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(SQL_CREATE_ENTRIES)
+        try {
+            db.execSQL(SQL_CREATE_ENTRIES)
+        } catch (e: Exception) {
+            print("The table was already created")
+            print(e.toString())
+        }
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
