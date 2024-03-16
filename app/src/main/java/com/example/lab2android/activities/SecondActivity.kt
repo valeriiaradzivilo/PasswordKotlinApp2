@@ -28,6 +28,7 @@ class SecondActivity : AppCompatActivity() {
         deleteDataFAB = findViewById(R.id.delete_db_data_fab)
 
         resultTextSQLite.text = ""
+        resultShowPasswordSQLite.text = ""
 
         val dbHelper = PasswordDbHelper(applicationContext)
         val db = dbHelper.readableDatabase
@@ -37,6 +38,10 @@ class SecondActivity : AppCompatActivity() {
 
         deleteDataFAB.setOnClickListener {
             dbHelper.onDeleteData(db)
+            resultTextSQLite.text = ""
+            resultShowPasswordSQLite.text = ""
+            displayPasswordFromDatabase(db)
+
         }
     }
 
@@ -65,9 +70,9 @@ class SecondActivity : AppCompatActivity() {
                     val text = cursor.getString(index)
                     val showPassword = cursor.getString(indexShow)
                     if (resultTextSQLite.text.isNotEmpty()) {
-                        resultTextSQLite.text = resultTextSQLite.text.toString() + "\n" + text
+                        resultTextSQLite.text = "${resultTextSQLite.text}\n$text"
                         resultShowPasswordSQLite.text =
-                            resultShowPasswordSQLite.text.toString() + "\n" + showPassword
+                            "${resultShowPasswordSQLite.text}\n$showPassword"
 
                     } else {
                         resultTextSQLite.text = text
@@ -76,6 +81,7 @@ class SecondActivity : AppCompatActivity() {
 
 
                 }
+              
             }
 
         }

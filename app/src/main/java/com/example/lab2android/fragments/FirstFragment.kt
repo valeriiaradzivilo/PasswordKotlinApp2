@@ -3,6 +3,7 @@ package com.example.lab2android.fragments
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.example.lab2android.R
 import com.example.lab2android.activities.SecondActivity
 import com.example.lab2android.storage.DB
 import com.example.lab2android.storage.PasswordDbHelper
+import java.util.UUID
 
 class FirstFragment : Fragment() {
 
@@ -25,6 +27,8 @@ class FirstFragment : Fragment() {
     private lateinit var okButton: Button
     private lateinit var openDbButton: Button
     private lateinit var storePassword: CheckBox
+
+    private var storePasswordValue: Boolean = false
 
     private var onOkClick: (String) -> Unit = {}
 
@@ -43,11 +47,12 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var storePassword: Boolean = false
 
         initComponents(view)
 
         clean()
+
+        radioGroup.check(R.id.radio_button_visible)
 
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
             val isEmpty = isTextFieldEmpty()
@@ -62,7 +67,7 @@ class FirstFragment : Fragment() {
         okButton.setOnClickListener {
             if (!isTextFieldEmpty() && passwordField != null) {
                 onOkClick(passwordField!!.text.toString())
-                if (passwordField != null && storePassword) {
+                if (passwordField != null && storePasswordValue) {
                     storePasswordInDatabase(passwordField!!.text.toString())
                 }
                 clean()
@@ -70,7 +75,7 @@ class FirstFragment : Fragment() {
         }
 
         this.storePassword.setOnClickListener {
-            storePassword = this.storePassword.isChecked
+            storePasswordValue = this.storePassword.isChecked
         }
 
         openDbButton.setOnClickListener {
@@ -110,7 +115,11 @@ class FirstFragment : Fragment() {
         val dbHelper = PasswordDbHelper(requireContext())
         val db = dbHelper.writableDatabase
 
+        val myUuid = UUID.randomUUID()
+        val myUuidAsString = myUuid.toString()
+
         val values = ContentValues().apply {
+            put(BaseColumns._ID, myUuidAsString)
             put(DB.DBEntry.PASSWORD, password)
             put(
                 DB.DBEntry.SHOW_PASSWORD,
@@ -120,12 +129,18 @@ class FirstFragment : Fragment() {
 
         try {
             val newRowId = db?.insert(DB.DBEntry.TABLE_NAME, null, values)
-            showMessage(newRowId != null)
 
+            showMessage(newRowId != null && newRowId.toInt() != -1)
         } catch (e: Exception) {
+            db.close()
             showMessage(false)
             print(e.toString())
         }
+
+        if (db.isOpen)
+            db.close()
+
+
     }
 
     private fun showMessage(isSuccess: Boolean) {
@@ -135,7 +150,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
     }
 
     fun clean() {

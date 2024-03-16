@@ -12,11 +12,12 @@ class PasswordDbHelper(context: Context) :
 
     private val SQL_CREATE_ENTRIES =
         "CREATE TABLE ${DB.DBEntry.TABLE_NAME} (" +
-                "${BaseColumns._ID} INTEGER PRIMARY KEY," +
+                "${BaseColumns._ID} TEXT PRIMARY KEY," +
                 "${DB.DBEntry.PASSWORD} TEXT," +
                 "${DB.DBEntry.SHOW_PASSWORD} BOOL)"
 
     private val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${DB.DBEntry.TABLE_NAME}"
+    private val SQL_DELETE_DATA = "DELETE FROM ${DB.DBEntry.TABLE_NAME};"
 
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -41,8 +42,8 @@ class PasswordDbHelper(context: Context) :
     }
 
     fun onDeleteData(db: SQLiteDatabase) {
-        db.execSQL(SQL_DELETE_ENTRIES)
-        db.execSQL(SQL_CREATE_ENTRIES)
+        db.execSQL(SQL_DELETE_DATA)
+
     }
 
     companion object {

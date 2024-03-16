@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         val dbHelper = PasswordDbHelper(this)
 
-        dbHelper.onCreate(dbHelper.writableDatabase)
+        
 
 
 
